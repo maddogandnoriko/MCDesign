@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
+    <!-- TODO move scripts to bottom -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <title>Lildog's Minecraft Design Tool</title>
+  </head>
+  <body>
+    <div id="application_wrapper">
+      <h1>Minecraft Design Tool</h1>
+      <div id="design_container">
+        <h2>Design</h2>
+        <div id="design_grid">
+          <div id="newGrid"></div>
+        </div>
+        
+        <div id = "zoomContainer" class="remove">
+          <span id="zoomIn" class="zoomBtn">+</span>
+          <span id="zoomOut" class="zoomBtn">-</span>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div id="coords_container">0, 0</div>
+      <div id="tool_container">
+        <div id="cur_tool_wrapper" class="remove">
+          <div id="cur_tool" class="tool_0"></div>
+          Selected tool: <span id="cur_tool_code">Tool</span>
+          <div class="clearfix"></div>
+        </div>
+        <div class="tool_wrap">
+          <div id="edit" class="tool_0 toolBtn"></div>
+        </div>
+        <div class="tool_wrap">
+          <div id="rotate" class="tool_1 toolBtn"></div>
+        </div>
+        <!--<div class="tool_wrap">
+          <div id="tool_2" class="tool_2 toolBtn"></div>
+        </div>-->
+        <!--<div class="tool_wrap">
+          <div id="tool_3" class="tool_3 toolBtn"></div>
+        </div>-->
+        <div class="tool_wrap">
+          <div id="pointer" class="tool_4 toolBtn"></div>
+        </div>
+        <div class="tool_wrap">
+          <div id="erase" class="tool_6 toolBtn"></div>
+        </div>
+        <div class="tool_wrap">
+          <div id="move" class="tool_7 toolBtn"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div id="material_container">
+        <details open>
+          <summary>
+            <h2>Materials</h2>
+          </summary>
+          <div>&nbsp;</div>
+        <div id="cur_material_wrapper">
+          <div id="cur_material" class="material_0"></div>
+          Selected: <span id="cur_material_name">Blank</span>
+          <div class="clearfix"></div>
+        </div>
+        <div id = "materialsContainer">
+          <!--<div class="material_wrap">
+            <div class="material_0 materialPicker" data-materialid="0"></div>
+          </div>-->
+          <details id="materialGroup_0" name="WOOD(uncategorized)">
+            <summary>
+              Wood Blocks
+            </summary>
+            <div>&nbsp;</div>
+            <div id="materialGroup_1" name="Logs(side)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_2" name="Logs(top)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_3" name="Logs(stripped)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_4" name="Planks"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_5" name="Steps(side)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_6" name="Steps(top)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_7" name="Steps(upside down)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_8" name="Steps(outside turn)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_9" name="Steps(inside turn)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_10" name="Slab(top)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_11" name="Slab(side)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_12" name="Trapdoors"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_13" name="Pressure Plates"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_14" name="Doors(front)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_15" name="Doors(top)"></div>
+            <div class="clearfix"></div>
+          </details>
+          <div class="clearfix"></div>
+          <details id="materialGroup_16" name="Stone, Dirt  Ore, Mineral">
+            <summary>
+              Ore, Mineral & Dirt Blocks
+            </summary>
+            <div>&nbsp;</div>
+            <div id="materialGroup_17" name="Ores"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_18" name="Minerals"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_19" name="Dirts"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_20" name="Stone"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_21" name="Stairs(side)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_22" name="Stairs(top)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_23" name="Stairs(upsidedown)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_24" name="Stairs(outside turn)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_25" name="Stairs(inside turn)"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_42" name="Slabs"></div>
+            <div class="clearfix"></div>
+          </details>
+          <!--<div class="clearfix"></div>-->
+          <details id="materialGroup_26" name="Construction(uncategorized)">
+            <summary>
+              Construction Blocks
+            </summary>
+            <div>&nbsp;</div>
+            <div id="materialGroup_27" name="Fence"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_28" name="Walls"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_29" name="Glass Panes"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_30" name="Glass Blocks"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_31" name="Mining"></div>
+            <div class="clearfix"></div>
+          </details>
+          <details id="materialGroup_32" name="Plants & Natural(uncategorized)">
+            <summary>
+             Plants & Nature Blocks
+            </summary>
+            <div>&nbsp;</div>
+            <div id="materialGroup_33" name="Plants"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_34" name="Leaves"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_35" name="Fruit"></div>
+            <div class="clearfix"></div>
+          </details>
+          <div class="clearfix"></div>
+          <details id="materialGroup_36" name="Items(uncategorized)">
+            <summary>
+              Items
+            </summary>
+            <div>&nbsp;</div>
+            <div id="materialGroup_37" name="Furnishings"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_38" name="Things"></div>
+            <div class="clearfix"></div>
+            <div id="materialGroup_39" name="Wool"></div>
+            <div class="clearfix"></div>
+          </details>
+          <div class="clearfix"></div>
+          <details id="materialGroup_41" name="Numbers">
+            <summary>
+              Numbers
+            </summary>
+            <div>&nbsp;</div>
+          </details>
+          <div class="clearfix"></div>
+          
+          
+          
+          
+          
+          <details id="materialGroup_40" name="Miscellaneous">
+            <summary>
+              Miscellaneous Blocks
+            </summary>
+            <div>&nbsp;</div>
+          </details>
+          <div class="clearfix"></div>
+    
+          <details id="materialGroup_2000" name="Overlays">
+            <summary>
+              Overlay Blocks
+            </summary>
+            <div>&nbsp;</div>
+          </details>
+          <div class="clearfix"></div>
+        </div> <!--end materialsContainer -->
+        </details>
+      </div>
+      <div id="border_container" class="remove">
+        <details>
+          <summary>
+            <h2>Cell Borders</h2>
+          </summary>
+          <div>&nbsp;</div>
+          <div class="tool_wrap">
+            <div id="left_border" class="border_left borderBtn"></div>
+          </div>
+          <div class="tool_wrap">
+            <div id="top_border" class="border_top borderBtn"></div>
+          </div>
+          <div class="tool_wrap">
+            <div id="right_border" class="border_right borderBtn"></div>
+          </div>
+          <div class="tool_wrap">
+            <div id="bottom_border" class="border_bottom borderBtn"></div>
+          </div>
+        </details>
+        <div class="clearfix"></div>
+      </div>
+      <div id="settings_container">
+        <details>
+          <summary class="containerTitle">
+            <h2>Settings</h2>
+          </summary>
+          <div>&nbsp;</div>
+          <div>
+            <label for="design_title">Title:</label>
+            <input
+              type="text"
+              id="design_title"
+              name="design_title"
+              value="My Design"
+            />
+          </div>
+          <div>
+            <label for="design_author">Title:</label>
+            <input
+              type="text"
+              id="design_author"
+              name="design_author"
+              value="Author"
+            />
+          </div>
+          <label for="setsize_width">Width:</label>
+          <input
+            type="text"
+            id="setsize_width"
+            name="setsize_width"
+            value="20"
+          />
+          <label for="setsize_width">Height:</label>
+          <input
+            type="text"
+            id="setsize_height"
+            name="setsize_height"
+            value="20"
+          /> 
+          <button type="button" id="updGridSize">
+            Update
+          </button>
+          <button id="clearform" type="button">
+            Reset design to selected material
+          </button>
+          <button type="button" id="deleteLS">
+            Delete Browser Storage
+          </button>
+        </details>
+      </div>
+      <div id="import_export_container">
+        <details>
+          <summary>
+            <h2>Import, Export, Save</h2>
+          </summary>
+          <div>&nbsp;</div>
+          <div>
+            <button type="button" id="expToForm">
+              Export current design
+            </button>
+            <button type="button" id="downDesign">
+              Download current design
+            </button>
+            <textarea name="port_field" id="port_field"></textarea>
+            <button id="impFromForm" type="button">
+              Import from Form
+            </button>
+            <button id="importFileLabel" type="button">
+              Import File
+            </button> 
+            <input id = "importFile" type="file" class="remove" value="Import File"/>
+            <button id="save_png" type="button">
+              Save as PNG
+            </button>
+            <button id="makeMatList" type="button">
+              Make Materials List
+            </button>
+          </div>
+        </details>
+      </div>
+      <div id="matList" class="remove"></div>
+    </div> <!-- end application wrapper -->
+    <canvas id="canvas" class="remove" width="341" height="341"></canvas>
+    <canvas id="buffer_canvas" width="16" height="16"></canvas>
+    <footer>
+      <section>
+        Made by <a href="http://michd.me">Mich</a>, 2011. Current version: 1.2
+        (Updated Dec 2017)
+      </section>
+      <section>
+        <a href="http://minecraft.net">Minecraft</a> is made by
+        <a href="http://mojang.com">Mojang</a>. This tool is in no way
+        affiliated with Mojang AB.
+      </section>
+      <section>This tool requires JavaScript to be enabled.</section>
+    </footer>
+  </body>
+</html>
