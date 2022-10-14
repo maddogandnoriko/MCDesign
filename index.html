@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/spritesheet.css" media="screen" />
     <!-- TODO move scripts to bottom -->
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <!--<script type="text/javascript" src="js/jquery.js"></script> -->
     <script type="text/javascript" src="js/main.js"></script>
     <title>Lildog's Minecraft Design Tool</title>
   </head>
@@ -17,10 +19,11 @@
           <div id="newGrid"></div>
         </div>
         
-        <div id = "zoomContainer" class="remove">
+        <!--<div id = "zoomContainer">
           <span id="zoomIn" class="zoomBtn">+</span>
+          <span id="zoomFactor" class="zoomBtn">18</span>
           <span id="zoomOut" class="zoomBtn">-</span>
-        </div>
+        </div>-->
         <div class="clearfix"></div>
       </div>
       <div id="coords_container">0, 0</div>
@@ -182,10 +185,6 @@
           </details>
           <div class="clearfix"></div>
           
-          
-          
-          
-          
           <details id="materialGroup_40" name="Miscellaneous">
             <summary>
               Miscellaneous Blocks
@@ -204,27 +203,27 @@
         </div> <!--end materialsContainer -->
         </details>
       </div>
-      <div id="border_container" class="remove">
+      <!--<div id="border_container">
         <details>
           <summary>
             <h2>Cell Borders</h2>
           </summary>
           <div>&nbsp;</div>
           <div class="tool_wrap">
-            <div id="left_border" class="border_left borderBtn"></div>
+            <div id="left_border" class="borderBtn toolBtn"></div>
           </div>
           <div class="tool_wrap">
-            <div id="top_border" class="border_top borderBtn"></div>
+            <div id="top_border" class="borderBtn toolBtn"></div>
           </div>
           <div class="tool_wrap">
-            <div id="right_border" class="border_right borderBtn"></div>
+            <div id="right_border" class="borderBtn toolBtn"></div>
           </div>
           <div class="tool_wrap">
-            <div id="bottom_border" class="border_bottom borderBtn"></div>
+            <div id="bottom_border" class="borderBtn toolBtn"></div>
           </div>
         </details>
         <div class="clearfix"></div>
-      </div>
+      </div> -->
       <div id="settings_container">
         <details>
           <summary class="containerTitle">
