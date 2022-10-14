@@ -1,5 +1,7 @@
 //check out maps for matrix and materials 
 // ditch material dataset?
+// use evt instead of evt.id? or visa versa 
+
 const MCD = {
   // material, matRotation, ??flip??, overlay, overlayrotation
   matrixTwo: [
@@ -664,26 +666,18 @@ document.addEventListener("DOMContentLoaded", function(){
         case "move":
           moveTool(cellData);
           break;
-        //flip tools
-        /*
-          if (MCD.env.selectedTool == 3) {
-            console.log("Clicked grid square with horizontal flip tool.");
-            // set the flip in grid
-            if (classes.contains("flip_h")) {
-              classes.remove("flip_h");
-            } else {
-              classes.add("flip_h");
-            }
-          }
-         if (MCD.env.selectedTool == 2) {
-          console.log("Clicked grid square with vertical flip tool.");
-          // set the material in matrix
-          if (classes.contains("flip_v")) {
-            classes.remove("flip_v");
-          } else {
-            classes.add("flip_v");
-          }
-        } */
+        case "left_border":
+          borderTool(cellData, "left");
+          break;
+        case "top_border":
+          borderTool(cellData, "top");
+          break;
+        case "right_border":
+          borderTool(cellData, "right");
+          break;
+        case "bottom_border":
+          borderTool(cellData, "bottom");
+          break;
         //border tools
         /*
         if (
@@ -706,6 +700,26 @@ document.addEventListener("DOMContentLoaded", function(){
   
       new_row.append(new_cell);
     }*/
+        //flip tools
+        /*
+          if (MCD.env.selectedTool == 3) {
+            console.log("Clicked grid square with horizontal flip tool.");
+            // set the flip in grid
+            if (classes.contains("flip_h")) {
+              classes.remove("flip_h");
+            } else {
+              classes.add("flip_h");
+            }
+          }
+         if (MCD.env.selectedTool == 2) {
+          console.log("Clicked grid square with vertical flip tool.");
+          // set the material in matrix
+          if (classes.contains("flip_v")) {
+            classes.remove("flip_v");
+          } else {
+            classes.add("flip_v");
+          }
+        } */
         default:
           break;
       }
@@ -775,6 +789,16 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     listField.classList.remove("remove");
   });
+  
+  document.querySelector("#zoomIn")
+  .addEventListener("click", function (evt) {
+    zoom(evt);
+  });
+
+document.querySelector("#zoomOut")
+  .addEventListener("click", function (evt) {
+    zoom(evt);
+  });
 });
 
 
@@ -817,14 +841,6 @@ function reDraw(cols, rows) {
         })
         .catch(err => { console.log("fail:" + err) });
     }
-
- 
- 
- 
-    
-    
-    
-    
     container.appendChild(cell);
   }
 }
@@ -835,7 +851,7 @@ function loadMaterials(){
   const spriteHeight = MCD.settings.spriteHeight;
   
   const spriteSheet = new Image();
-  spriteSheet.src = "./img/material_sprite.png";
+  spriteSheet.src = "./img/spritesheet.png";
   spriteSheet.onload = function() {
     const spritesPerRow = spriteSheet.width/spriteWidth;
     const spritesPerColumn = spriteSheet.height/spriteHeight;
@@ -961,7 +977,7 @@ function createOverlay(overlayID,rotation) {
     ctx.clearRect(0,0,canvas.width,canvas.height);
   
     const spriteSheet = new Image();
-    spriteSheet.src = "./img/material_sprite.png";
+    spriteSheet.src = "./img/spritesheet.png";
    
     spriteSheet.onload = function() {
       let overlayXY = MCD.getMaterialXY(overlayID);
@@ -1089,6 +1105,8 @@ function pointerTool(cellData){
   MCD.env.setMaterial(cellData.materialID);
   MCD.env.selectedOverlay = 0;
   console.log(cellData);
+  let celly = document.querySelector("#"+cellData.id);
+  //celly.classL  ist.add("left_border");
 }
 
 function eraseTool(cellData){
@@ -1144,6 +1162,13 @@ function moveTool(cellData){
       resetCellOverlay(originCell);
     }
   }
+}
+
+function borderTool(cellData, position){
+  console.log("Placing a border on the " + position);
+
+  //border: 3px solid black;
+  //box-sizing: border-box;
 }
 
 function drawPicture() {
@@ -1295,7 +1320,7 @@ function drawSprites() {
   let spriteSheetStartY = 0;
   let newImageStartX = 0;
   let newImageStartY = 0;
-  newImage.src = "./img/material_sprite.png";
+  newImage.src = "./img/spritesheet.png";
   
   //draw images
   const p = 0; //padding
@@ -1399,3 +1424,61 @@ function generateMaterialList() {
   //console.log(Object.keys(materialList).length);
   return materialList;
 }
+
+/*function zoom(evt){
+  // zoom in
+  const zoomFactorEl = document.querySelector("#zoomFactor");
+  const oldZoom = parseFloat(zoomFactorEl.innerHTML);
+  
+  // determine new zoom
+  let newZoom = oldZoom;
+  switch(evt.target.id) {
+    case "zoomIn":
+      newZoom += 0.1;
+      break;
+  
+    case "zoomOut":
+      newZoom -= 0.1;
+      break;
+  
+    default:
+      break;
+  }
+  document.querySelector('#design_container').style.transform = "scale(" + newZoom + ")";
+  zoomFactorEl.innerHTML = newZoom.toFixed(1);
+}*/
+function zoom(evt){
+  console.log("Zooming");
+  // zoom in
+  const zoomFactorEl = document.querySelector("#zoomFactor");
+  const oldZoom = parseFloat(zoomFactorEl.innerHTML);
+  
+  // determine new zoom
+  let newZoom = oldZoom;
+  switch(evt.target.id) {
+    case "zoomIn":
+      newZoom += 1;
+      break;
+    case "zoomOut":
+      newZoom -= 1;
+      break;
+    default:
+      break;
+  }
+  //document.querySelectorAll(".grid-item")
+  //.forEach(
+    //cell => {
+      document.documentElement.style.setProperty("--cell-size", newZoom+"px");
+      //document.documentElement.style.setProperty("--cell-size", newZoom"px");
+    //}
+  //);
+  
+  
+  zoomFactorEl.innerHTML = newZoom;
+  
+  
+}
+  
+  
+  
+  
